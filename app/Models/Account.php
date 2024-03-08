@@ -5,7 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class BankAccout extends Model
+class Account extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['name', 'balance'];
+    protected $connection = 'mysql';
+    protected $table = 'accounts';
+
 }
