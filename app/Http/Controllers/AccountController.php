@@ -7,9 +7,8 @@ use App\Http\Requests\CreateAccountRequest;
 use App\Http\Requests\TransferRequest;
 use App\Http\Resources\AccountResource;
 use App\Models\Account;
-use App\Models\Transactions;
 use App\Services\AccountService;
-use App\Services\BetaAuthorizerService;
+use Illuminate\Http\JsonResponse;
 
 class AccountController extends Controller
 {
@@ -20,14 +19,14 @@ class AccountController extends Controller
         $this->accountService = $accountService;
     }
 
-    public function store(CreateAccountRequest $request)
+    public function store(CreateAccountRequest $request): AccountResource
     {
         $account = Account::firstOrCreate(['name' => $request->name]);
 
         return new AccountResource($account);
     }
 
-    public function transfer(TransferRequest $request)
+    public function transfer(TransferRequest $request): JsonResponse
     {
         $transferInfo = $request->validated();
 
@@ -37,6 +36,9 @@ class AccountController extends Controller
     public function addFunds(AddFundsRequest $request)
     {
         $transferInfo = $request->validated();
-        return $this->accountService->addFunds($transferInfo);
+        $account = Account::find($transferInfo['account_id']);
+        $this->accountService->addFunds($account, $transferInfo["amount"]);
+        // incluir o campo opcional no resource igual fiz no lead
+        return new AccountResource($account);
     }
 }

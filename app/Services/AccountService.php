@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Account;
 use App\Models\Transactions;
 use Carbon\Carbon;
+use Illuminate\Http\JsonResponse;
 
 Class AccountService
 {
@@ -13,7 +14,8 @@ Class AccountService
     {
         $this->betaAuthorizerService = $betaAuthorizerService;
     }
-    public function transfer(array $dados) {
+    public function transfer(array $dados):  JsonResponse
+    {
         $sender = Account::find($dados['sender_id']);
         $receiver = Account::find($dados['receiver_id']);
 
@@ -34,7 +36,7 @@ Class AccountService
         return response()->json(["success" => false, "msg" => "Remetente não possui saldo o suficiente para realizar transacao."]);
     }
 
-    private function scheduleTransaction(Account $sender, Account $receiver, float $amount, string $scheduleDate)
+    private function scheduleTransaction(Account $sender, Account $receiver, float $amount, string $scheduleDate): Transactions
     {
         return Transactions::create([
             "sender_id" => $sender->id,
@@ -67,9 +69,9 @@ Class AccountService
         return $transaction->update(['sent' => true]);
     }
 
-    public function addFunds($transactionInfo)
+    public function addFunds(Account $account, $amount): bool
     {
-        return Account::find($transactionInfo->account_id)->update(['balance' => $transactionInfo->amount]);
+        return $account->update(['balance' => $amount]);
     }
 
     private function updateBalance(Account $sender, Account  $receiver, float $amount): void
