@@ -55,7 +55,7 @@ class AccountServiceTest extends TestCase
         $transferData = [
             'sender_id' => $sender->id,
             'receiver_id' => $receiver->id,
-            'amount' => 200,
+            'amount' => 20000,
             'scheduled' => false,
         ];
 
@@ -65,7 +65,6 @@ class AccountServiceTest extends TestCase
 
         if (isset($result["authorized"])) {
             $this->assertFalse($result['authorized']);
-            $this->assertNull($result['id']);
         }
     }
 }

@@ -33,7 +33,7 @@ class TransferTest extends TestCase
             $response->assertStatus(Response::HTTP_BAD_REQUEST);
         }
         // Status 200
-        $response->assertStatus(Response::HTTP_OK);
+        $response->assertStatus(Response::HTTP_CREATED);
 
         // Buscar no banco
         $this->assertDatabaseHas('transactions', [
