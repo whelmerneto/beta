@@ -1,0 +1,143 @@
+{
+	"info": {
+		"_postman_id": "87fee891-5570-4028-b4a5-93f68fd4bb94",
+		"name": "Beta",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "29213600",
+		"_collection_link": "https://orange-crater-531367.postman.co/workspace/My-Workspace~53953532-71d6-460a-8b10-00cdbae658cc/collection/29213600-87fee891-5570-4028-b4a5-93f68fd4bb94?action=share&source=collection_link&creator=29213600"
+	},
+	"item": [
+		{
+			"name": "Authorization API",
+			"item": [
+				{
+					"name": "Authorizer",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "d2hlbG1lcl9uZXRvQGhvdG1haWwuY29t"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer d2hlbG1lcl9uZXRvQGhvdG1haWwuY29t",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"sender\": 1,\n   \"receiver\": 2,\n   \"amount\": 100\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://eo9ggxnfribmy6a.m.pipedream.net/beta-authorizer"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Create Account",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\" : \"Whelmer\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8000/api/account/create"
+			},
+			"response": []
+		},
+		{
+			"name": "Transfer",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"sender_id\" : 1,\n    \"receiver_id\" : 2,\n    \"amount\" :100,\n    \"scheduled\": true,\n    \"schedule_date\" : \"2024-03-09\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8000/api/account/transfer"
+			},
+			"response": []
+		},
+		{
+			"name": "Add Funds",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"account_id\" : 1,\n    \"amount\" : 2000\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8000/api/account/addFunds"
+			},
+			"response": []
+		}
+	]
+}
