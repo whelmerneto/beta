@@ -19,6 +19,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/account/create', [AccountController::class, 'store']);
-Route::post('/account/transfer', [AccountController::class, 'transfer']);
-Route::post('/account/addFunds', [AccountController::class, 'addFunds']);
+Route::group(['prefix' => 'account'], function() {
+    Route::post('/create', [AccountController::class, 'store']);
+    Route::post('/transfer', [AccountController::class, 'transfer']);
+    Route::post('/addFunds', [AccountController::class, 'addFunds']);
+});

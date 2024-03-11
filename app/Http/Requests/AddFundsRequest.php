@@ -23,7 +23,7 @@ class AddFundsRequest extends FormRequest
     {
         return [
             'account_id' => 'required|exists:accounts,id',
-            'amount' => 'required', 'regex:^(?:[1-9]\d+|\d)(?:\,\d\d)?$'
+            'amount' => 'required|gt:0', 'regex:^(?:[1-9]\d+|\d)(?:\,\d\d)?$'
         ];
     }
 }

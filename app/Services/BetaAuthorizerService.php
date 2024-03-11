@@ -2,12 +2,18 @@
 
 namespace App\Services;
 
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Log;
 
 class BetaAuthorizerService
 {
-    public function authorize(int $senderId, int $receiverId, float $amount)
+    /**
+     * @param int $senderId
+     * @param int $receiverId
+     * @param float $amount
+     * @return JsonResponse|array
+     */
+    public function authorize(int $senderId, int $receiverId, float $amount): JsonResponse|array
     {
         $base64Email = base64_encode(env('AUTH_EMAIL'));
         $url = ENV('BETA_AUTH_URL');
