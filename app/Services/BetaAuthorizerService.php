@@ -15,8 +15,8 @@ class BetaAuthorizerService
      */
     public function authorize(int $senderId, int $receiverId, float $amount): JsonResponse|array
     {
-        $base64Email = base64_encode(env('AUTH_EMAIL'));
-        $url = ENV('BETA_AUTH_URL');
+        $base64Email = base64_encode(config('services.beta.email'));
+        $url = config('services.beta.url');
         $data = [
             "sender" => $senderId,
             "receiver" => $receiverId,

@@ -31,4 +31,9 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'beta' =>[
+        'email' => env('AUTH_EMAIL', 'whelmer_neto@hotmail.com'),
+        'url' => env('BETA_AUTH_URL', 'https://eo9ggxnfribmy6a.m.pipedream.net/beta-authorizer')
+    ]
+
 ];
